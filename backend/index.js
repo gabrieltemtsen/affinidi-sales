@@ -15,7 +15,7 @@ const initializeServer = async () => {
     });
     
 
-    const gabe = await affinidiProvider(app, {
+    await affinidiProvider(app, {
         id: "affinidi",
         issuer: process.env.AFFINIDI_ISSUER,
         client_id: process.env.AFFINIDI_CLIENT_ID,
@@ -26,7 +26,6 @@ const initializeServer = async () => {
         },
     });
 
-    console.log('HELLOOOOO: ', gabe)
 
     app.listen(PORT, () => {
         console.log(`Server listening on ${PORT}`);
