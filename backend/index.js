@@ -1,10 +1,12 @@
 var express = require('express');
 require('dotenv').config()
 const { affinidiProvider } = require('@affinidi/passport-affinidi')
-
+const home = require('./routes/home');
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/home", home);
 
 const PORT = process.env.PORT || 3001;
 
