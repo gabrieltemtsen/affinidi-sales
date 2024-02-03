@@ -30,7 +30,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://affinidi-sales-server.vercel.app/",
   "browserslist": {
     "production": [
       ">0.2%",
