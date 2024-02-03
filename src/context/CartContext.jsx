@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { debounce } from "lodash";
 import { createContext, useContext, useState } from "react";
 

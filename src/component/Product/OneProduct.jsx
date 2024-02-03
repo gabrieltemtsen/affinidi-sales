@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Box,
   Heading,
@@ -6,16 +5,18 @@ import {
   Button,
   useDisclosure,
   useToast,
+  Image,
 } from "@chakra-ui/react";
 import DrawerComponent from "../Drawer";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { useShoppingCart } from "@/context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/CartContext";
 
 const OneProduct = ({ id, image, title, description, price }) => {
   const { isOpen, onClose } = useDisclosure();
   const toast = useToast();
 
   const { addItemToCart, removeItem, getItemsQuantity } = useShoppingCart();
+
 
   return (
     <Box key={id} maxW="lg" border="1px solid #eee" rounded="md" p="3">

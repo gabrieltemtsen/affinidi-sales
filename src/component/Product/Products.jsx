@@ -1,15 +1,13 @@
-import { useShoppingCart } from "@/context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/CartContext";
 import { Box, Center, CircularProgress, SimpleGrid } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import SingleProduct from "./SingleProduct";
+import OneProduct from "./OneProduct";
+import { useState } from "react";
+import { data } from "../../db/data";
 
 const Products = () => {
   const { searchTerm } = useShoppingCart();
-  const { data, isLoading } = useQuery(["products"], () => {
-    return fetch(process.env.NEXT_PUBLIC_FAKE_STORE_API).then((res) =>
-      res.json()
-    );
-  });
+ const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Box mt="32">
@@ -29,7 +27,7 @@ const Products = () => {
           })
           .map(({ id, image, title, price, description }) => {
             return (
-              <SingleProduct
+              <OneProduct
                 key={id}
                 id={id}
                 image={image}

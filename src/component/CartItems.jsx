@@ -1,7 +1,7 @@
-import { CartItemsProps, useShoppingCart } from "@/context/ShoppingCartContext";
-import { Box, Button, Center, CircularProgress, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { CartItemsProps, useShoppingCart } from "../context/CartContext";
+import { Box, Button, Center, CircularProgress, Text, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { data } from "../db/data";
 
 const CartItems = ({ id, quantity }) => {
   const [product, setProduct] = useState(null);
@@ -11,8 +11,7 @@ const CartItems = ({ id, quantity }) => {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const res = await fetch(process.env.NEXT_PUBLIC_FAKE_STORE_API);
-      const data = await res.json();
+      
       setProduct(data);
       setIsLoading(false);
     })();

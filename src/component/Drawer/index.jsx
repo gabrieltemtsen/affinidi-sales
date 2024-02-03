@@ -1,4 +1,4 @@
-import { useShoppingCart } from "@/context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/CartContext";
 import {
   Drawer,
   DrawerBody,
@@ -9,7 +9,7 @@ import {
   Grid,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import CartItemInDrawer from "../CartItemInDrawer";
+import CartItems from "../CartItems";
 
 const DrawerComponent = ({ isOpen, onClose, drawerHeader }) => {
   const { cartItems } = useShoppingCart();
@@ -31,7 +31,7 @@ const DrawerComponent = ({ isOpen, onClose, drawerHeader }) => {
         <DrawerBody>
           <Grid templateColumns="repeat(2, 1fr)">
             {cartItems?.map((item) => (
-              <CartItemInDrawer {...item} key={item.id} />
+              <CartItems {...item} key={item.id} />
             ))}
           </Grid>
         </DrawerBody>
