@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ChakraProvider,
   Box,
@@ -14,11 +14,15 @@ import { Logo } from './Logo';
 import Navbar from './component/Navbar';
 import Products from "./component/Product/Products";
 import { Container } from "@chakra-ui/react";
+import UserContext from './context/UserContext';
 
 import { ShoppingCartProvider } from "./context/CartContext";
 
 function App() {
+  const [userProfile, setUserProfile] = useState(null);
   return (
+    <UserContext.Provider value={{ profile: userProfile, setProfile: setUserProfile }}>
+
     <ChakraProvider theme={theme}>
       <ShoppingCartProvider>
       <Navbar />
@@ -30,6 +34,8 @@ function App() {
       </ShoppingCartProvider>
 
     </ChakraProvider>
+    </UserContext.Provider>
+
   );
 }
 

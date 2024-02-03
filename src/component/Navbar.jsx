@@ -24,21 +24,37 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { AffinidiLoginButton, useAffinidiProfile } from '@affinidi/affinidi-react-auth';
 import { useShoppingCart } from "../context/CartContext";
-import { useRef } from "react";
 import { FaBolt, FaShoppingCart, FaSearch } from "react-icons/fa";
 import DrawerComponent from "./Drawer";
 
+import React, { useRef,useContext, useEffect, useState } from 'react';
+import UserContext from '../context/UserContext';
 
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { setProfile } = useContext(UserContext);
+
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
     authCompleteUrl: '/api/affinidi-auth/complete'
   });
   const { inputSearchedTerm } = useShoppingCart();
   const drawerRef = useRef();
 
+  const [localProfile, setLocalProfile] = useState(null);
+
+  useEffect(() => {
+  // Convert objects to strings to compare them
+  const currentProfileStr = JSON.stringify(profile);
+  const localProfileStr = JSON.stringify(localProfile);
+
+  // Only update if the stringified versions differ
+  if (currentProfileStr !== localProfileStr) {
+    setLocalProfile(profile);
+    setProfile(profile); // assuming setProfile comes from a context and is stable
+  }
+}, [profile])
 
 
 
@@ -49,7 +65,6 @@ export default function Navbar() {
   };
 
   const renderLoginState = () => {
-    console.log('profile', profile);
     if (isLoading) {
       return <p>Loading...</p>;
     }
@@ -97,7 +112,30 @@ export default function Navbar() {
         );
       }
   
-  return <AffinidiLoginButton />;
+  return (
+    <>
+    <Flex  justifyContent={'center'}>
+    <AffinidiLoginButton containerStyles={{
+    margin: '5px',
+    padding: '5px',
+  }}
+  buttonStyles={{
+    backgroundColor: 'navy',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    color: '#fff',
+    border: 'none',
+    fontSize: '12px',
+    borderRadius: '5px',
+    padding: '19px',
+    cursor: 'pointer',
+    width: '109px',
+  }}/>
+    </Flex>
+    </>
+  );
     };
 
    
