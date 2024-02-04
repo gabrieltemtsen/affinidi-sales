@@ -56,16 +56,18 @@ const DrawerComponent = ({ isOpen, onClose, drawerHeader }) => {
   };
   useEffect(() => {
     // Update userData when profile changes
-    setUserData({
-      firstName: profile?.givenName || '',
-      lastName: profile?.familyName || '', 
-      email: profile?.email || '',
-      phone: profile?.phoneNumber || '', 
-      address: profile?.streetAddress || '', 
-      postalCode: profile?.postalCode || '',
-      city: profile?.locality || '', 
-      country: profile?.country || ''
-    });
+    if (!userData.firstName) {
+      setUserData({
+        firstName: profile?.givenName || '',
+        lastName: profile?.familyName || '', 
+        email: profile?.email || '',
+        phone: profile?.phoneNumber || '', 
+        address: profile?.streetAddress || '', 
+        postalCode: profile?.postalCode || '',
+        city: profile?.locality || '', 
+        country: profile?.country || ''
+      });
+    }
   }, [profile]);
 
 

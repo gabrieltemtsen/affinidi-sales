@@ -40,11 +40,11 @@ const OneProduct = ({ id, image, title, description, price }) => {
             addItemToCart(id);
             toast({
               title: `${title} Added`,
-              description: "We've added your product to the cart.",
+              description: "products successfully added",
               status: "success",
-              position: "bottom-left",
+              position: "bottom",
               variant: "subtle",
-              duration: 5000,
+              duration: 3000,
               isClosable: true,
             });
           }}
@@ -60,9 +60,9 @@ const OneProduct = ({ id, image, title, description, price }) => {
             removeItem(id);
             toast({
               title: `${title} Removed`,
-              description: "We've remove your product from the cart.",
+              description: "products successfully removed",
               status: "error",
-              position: "bottom-left",
+              position: "bottom",
               variant: "subtle",
               duration: 5000,
               OneProduct,

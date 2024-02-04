@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 const initializeServer = async () => {
 
     app.get('/', function (req, res, next) {
-        res.json({ success: 'Affinidi-Sales Working propperly' });
+        res.json({ success: 'Affinidi-Sales Working propperly!' });
     });
     
 
@@ -22,7 +22,7 @@ const initializeServer = async () => {
         issuer: process.env.AFFINIDI_ISSUER,
         client_id: process.env.AFFINIDI_CLIENT_ID,
         client_secret: process.env.AFFINIDI_CLIENT_SECRET,
-        redirect_uris: ['http://localhost:3000/auth/callback'], 
+        redirect_uris: ['http://localhost:3000/auth/callback', 'https://affinidi-sales.vercel.app/auth/callback'], 
         handleCredential: (credential) => {
             console.log('Received credential:', credential);
         },

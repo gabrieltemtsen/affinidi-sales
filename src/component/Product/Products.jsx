@@ -21,6 +21,9 @@ const Products = () => {
           ?.filter((product) => {
             if (
               product.title.toLowerCase().includes(searchTerm.toLowerCase())
+              || product.category.toLowerCase().includes(searchTerm.toLowerCase())
+              || product.country.toLowerCase().includes(searchTerm.toLowerCase())
+
             ) {
               return product;
             }

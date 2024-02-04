@@ -89,7 +89,7 @@ export default function Navbar() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={profile?.picture}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -97,7 +97,7 @@ export default function Navbar() {
                   <Center>
                     <Avatar
                       size={'xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={profile?.picture}
                     />
                   </Center>
                   <Center>
@@ -159,7 +159,7 @@ export default function Navbar() {
           <Heading fontSize={'18px'}>AFFINIDI-SALES</Heading>
 
           {/* search option  */}
-          <InputGroup mx="10px" maxW="25em">
+          <InputGroup mx="10px" maxW="15em">
             <InputLeftElement pointerEvents="none">
               <FaSearch color="gray.300" />
             </InputLeftElement>
