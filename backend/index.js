@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 const initializeServer = async () => {
 
     app.get('/', function (req, res, next) {
-        res.json({ success: 'Express' });
+        res.json({ success: 'Affinidi-Sales Working propperly' });
     });
     
 
