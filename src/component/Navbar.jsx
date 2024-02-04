@@ -156,7 +156,7 @@ export default function Navbar() {
     >
       <Container maxW="6xl">
         <Flex alignItems="center" justifyContent="space-between">
-          <Heading fontSize={'24px'}>AFFINIDI-SALES</Heading>
+          <Heading fontSize={'18px'}>AFFINIDI-SALES</Heading>
 
           {/* search option  */}
           <InputGroup mx="10px" maxW="25em">
