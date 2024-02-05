@@ -15,6 +15,7 @@ const initializeServer = async () => {
     app.get('/', function (req, res, next) {
         res.json({ success: 'Affinidi-Sales Working propperly!!!' });
     });
+    app.set('trust proxy', 1);
     
 
     await affinidiProvider(app, {
