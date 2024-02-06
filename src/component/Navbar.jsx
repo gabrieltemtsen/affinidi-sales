@@ -37,7 +37,7 @@ export default function Navbar() {
   const { setProfile } = useContext(UserContext);
 
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
-    authCompleteUrl: 'https://affinidi-sales-server.vercel.app/api/affinidi-auth/complete'
+    authCompleteUrl: `${process.env.BASE_URL}/api/affinidi-auth/complete`
   });
   
 
@@ -68,7 +68,7 @@ export default function Navbar() {
 
   const renderLoginState = () => {
     if (isLoading) {
-      return <p>Loading...</p>;
+      return <p>Loading..</p>;
     }
 
     if (error) {
@@ -119,7 +119,7 @@ export default function Navbar() {
     <>
     <Flex  justifyContent={'center'}>
     <AffinidiLoginButton 
-    authInitUrl='https://affinidi-sales-server.vercel.app/api/affinidi-auth/init'
+    authInitUrl={`${process.env.BASE_URL}/api/affinidi-auth/init`}
     containerStyles={{
     margin: '5px',
     padding: '5px',
