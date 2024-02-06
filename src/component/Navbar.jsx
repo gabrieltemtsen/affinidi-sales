@@ -39,10 +39,7 @@ export default function Navbar() {
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
     authCompleteUrl: 'https://affinidi-sales-server.vercel.app/api/affinidi-auth/complete'
   });
-  if (error) {
-    console.log('PROILEL ', profile
-    )
-  }
+  
 
   const { inputSearchedTerm } = useShoppingCart();
   const drawerRef = useRef();
