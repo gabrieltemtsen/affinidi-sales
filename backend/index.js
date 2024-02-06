@@ -2,11 +2,12 @@ var express = require('express');
 var cors = require('cors');
 require('dotenv').config()
 const { affinidiProvider } = require('@affinidi/passport-affinidi')
-app.use(cors());
+
 const home = require('./routes/home');
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/home", home);
 
