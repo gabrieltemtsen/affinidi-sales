@@ -15,10 +15,9 @@ import Navbar from './component/Navbar';
 import Products from "./component/Product/Products";
 import { Container } from "@chakra-ui/react";
 import UserContext from './context/UserContext';
-import * as dotenv from 'dotenv';
 import { ShoppingCartProvider } from "./context/CartContext";
 
-dotenv.config();
+
 
 
 function App() {

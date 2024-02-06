@@ -26,9 +26,11 @@ import { AffinidiLoginButton, useAffinidiProfile } from '@affinidi/affinidi-reac
 import { useShoppingCart } from "../context/CartContext";
 import { FaBolt, FaShoppingCart, FaSearch } from "react-icons/fa";
 import DrawerComponent from "./Drawer";
-
 import React, { useRef,useContext, useEffect, useState } from 'react';
 import UserContext from '../context/UserContext';
+
+const BASE_URL = 'https://affinidi-sales-server.vercel.app'
+// const BASE_URL="http://localhost:3000"
 
 
 export default function Navbar() {
@@ -37,8 +39,10 @@ export default function Navbar() {
   const { setProfile } = useContext(UserContext);
 
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
-    authCompleteUrl: `${process.env.BASE_URL}/api/affinidi-auth/complete`
+    authCompleteUrl: `${BASE_URL}/api/affinidi-auth/complete`
   });
+
+  console.log('URL: ',BASE_URL)
   
 
   const { inputSearchedTerm } = useShoppingCart();
@@ -119,7 +123,7 @@ export default function Navbar() {
     <>
     <Flex  justifyContent={'center'}>
     <AffinidiLoginButton 
-    authInitUrl={`${process.env.BASE_URL}/api/affinidi-auth/init`}
+    authInitUrl={`${BASE_URL}/api/affinidi-auth/init`}
     containerStyles={{
     margin: '5px',
     padding: '5px',
