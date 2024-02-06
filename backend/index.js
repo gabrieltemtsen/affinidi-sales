@@ -7,7 +7,6 @@ const home = require('./routes/home');
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 
 app.use("/home", home);
 
@@ -16,8 +15,9 @@ const PORT = process.env.PORT || 3001;
 const initializeServer = async () => {
 
     app.get('/', function (req, res, next) {
-        res.json({ success: 'Affinidi-Sales Working propperly!!!' });
+        res.json({ success: 'Affinidi-Sales Working propperly!' });
     });
+    app.use(cors({ credentials: true, origin: true }));
     app.set('trust proxy', 1);
     
 
