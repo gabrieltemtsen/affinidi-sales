@@ -37,8 +37,9 @@ export default function Navbar() {
   const { setProfile } = useContext(UserContext);
 
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
-    authCompleteUrl: '/api/affinidi-auth/complete'
+    authCompleteUrl: 'https://affinidi-sales-server.vercel.app/api/affinidi-auth/complete'
   });
+
   const { inputSearchedTerm } = useShoppingCart();
   const drawerRef = useRef();
 
@@ -115,7 +116,9 @@ export default function Navbar() {
   return (
     <>
     <Flex  justifyContent={'center'}>
-    <AffinidiLoginButton containerStyles={{
+    <AffinidiLoginButton 
+    authInitUrl='https://affinidi-sales-server.vercel.app/api/affinidi-auth/init'
+    containerStyles={{
     margin: '5px',
     padding: '5px',
   }}
