@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@affinidi/affinidi-react-auth": "^1.0.9",
+    "@affinidi/affinidi-react-auth": "^1.0.12",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
