@@ -39,6 +39,10 @@ export default function Navbar() {
   const { isLoading, error, profile, handleLogout } = useAffinidiProfile({
     authCompleteUrl: 'https://affinidi-sales-server.vercel.app/api/affinidi-auth/complete'
   });
+  if (error) {
+    console.log('PROILEL ', profile
+    )
+  }
 
   const { inputSearchedTerm } = useShoppingCart();
   const drawerRef = useRef();
@@ -71,7 +75,8 @@ export default function Navbar() {
     }
 
     if (error) {
-      handleLogout();
+      alert(error)
+      console.log(error)
       return (
         <div>
           <p>Unable to load user data. Please try again later.</p>
