@@ -79,7 +79,7 @@ export default function Navbar() {
       console.log(error)
       return (
         <div>
-          <p>Unable to load user data. Please try again later.</p>
+          <Text fontSize={'12px'}>Unable to load user data. Please try again later.</Text>
         </div>
       );
     }
