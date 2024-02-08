@@ -5,12 +5,18 @@ import { AppProps } from "next/app";
 import { ShoppingCartProvider } from "@/context/ShoppingCartContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const client = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   return (
     <ShoppingCartProvider>
       <ChakraProvider>
-        <QueryClientProvider client={client}>
+        <QueryClientProvider client={queryClient}>
           <Layout>
             <Component {...pageProps} />
           </Layout>

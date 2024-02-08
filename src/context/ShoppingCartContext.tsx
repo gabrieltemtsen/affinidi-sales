@@ -6,6 +6,7 @@ type ShoppingCartContextProps = {
   getItemsQuantity: (id: number) => number;
   addItemToCart: (id: number) => void;
   removeItem: (id: number) => void;
+  clearCartItems: () => void; // New function to clear cart items
   cartItems: CartItemsProps[];
   searchTerm: string;
   cartItemsQuantity: number;
@@ -62,6 +63,10 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     setCartItems((currentItem) => currentItem.filter((item) => item.id !== id));
   }
 
+  function clearCartItems() {
+    setCartItems([]);
+  }
+
   const cartItemsQuantity = cartItems?.reduce(
     (quantity, item) => quantity + item.quantity,
     0
@@ -74,6 +79,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
         getItemsQuantity,
         removeItem,
         addItemToCart,
+        clearCartItems, // Expose the clearCartItems function
         cartItemsQuantity,
         searchTerm,
         inputSearchedTerm,
