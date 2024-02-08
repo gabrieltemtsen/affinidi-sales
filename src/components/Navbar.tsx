@@ -40,7 +40,7 @@ const Header: React.FunctionComponent = () => {
             {/* search option  */}
             <InputGroup mx="10px" maxW="20em">
               <InputLeftElement pointerEvents="none">
-                <FaSearch color="gray.300" />
+                <FaSearch color="gray.500" />
               </InputLeftElement>
 
               <Input
@@ -54,7 +54,7 @@ const Header: React.FunctionComponent = () => {
             {/* Cart option  */}
             <Flex fontSize="4xl" alignItems="center" justifyContent="center">
               <Button ref={drawerRef} onClick={onOpen}>
-                <FaShoppingCart fontSize="26px" />
+                <FaShoppingCart fontSize="24px" />
               </Button>
             </Flex>
           </Flex>
