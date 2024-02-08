@@ -3,21 +3,22 @@ import { Box, Button, Center, CircularProgress, Text, Image } from "@chakra-ui/r
 import { useEffect, useState } from "react";
 
 const CartItemInDrawer = ({ id, quantity }: CartItemsProps) => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { removeItem } = useShoppingCart();
 
+  const storeAPIUrl: string = process.env.NEXT_PUBLIC_FAKE_STORE_API as string
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const res = await fetch(process.env.NEXT_PUBLIC_FAKE_STORE_API);
+      const res = await fetch(storeAPIUrl);
       const data = await res.json();
       setProduct(data);
       setIsLoading(false);
     })();
   }, []);
 
-  const item = product?.find((i) => i.id === id);
+  const item = product?.find((i: any) => i.id === id);
   return (
     <>
       {isLoading ? (

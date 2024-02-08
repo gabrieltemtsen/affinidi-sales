@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Shoppy</title>
+        <title>Affindi-sales</title>
       </Head>
       <Container maxW="6xl">
         <Products />

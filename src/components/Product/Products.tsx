@@ -3,10 +3,21 @@ import { Box, Center, CircularProgress, SimpleGrid } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import SingleProduct from "./SingleProduct";
 
+type Product = {
+  id: string;
+  image: string;
+  title: string;
+  price: number;
+  description: string;
+}
+
+
 const Products: React.FunctionComponent = () => {
   const { searchTerm } = useShoppingCart();
+  const storeAPIUrl: string = process.env.NEXT_PUBLIC_FAKE_STORE_API as string
+
   const { data, isLoading } = useQuery(["products"], () => {
-    return fetch(process.env.NEXT_PUBLIC_FAKE_STORE_API).then((res) =>
+    return fetch(storeAPIUrl).then((res) =>
       res.json()
     );
   });
@@ -20,14 +31,14 @@ const Products: React.FunctionComponent = () => {
       )}
       <SimpleGrid columns={[1, 2, 2, 2, 3]} spacing={10} my="10">
         {data
-          ?.filter((product) => {
+          ?.filter((product: Product) => {
             if (
               product.title.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
               return product;
             }
           })
-          .map(({ id, image, title, price, description }) => {
+          .map(({ id , image, title, price, description }) => {
             return (
               <SingleProduct
                 key={id}

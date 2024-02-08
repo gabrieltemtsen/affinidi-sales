@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Flex,
+  Heading,
   Input,
   InputGroup,
   InputLeftElement,
@@ -23,6 +24,7 @@ const Header: React.FunctionComponent = () => {
       <Box
         as="nav"
         py="6"
+        background={'blue.700'}
         fontSize="3xl"
         borderBottom="1px solid #eee"
         position="fixed"
@@ -30,14 +32,13 @@ const Header: React.FunctionComponent = () => {
         left="0"
         right="0"
         zIndex="2"
-        bg="white"
       >
         <Container maxW="6xl">
           <Flex alignItems="center" justifyContent="space-between">
-            <FaBolt />
+            <Heading color={'white'} fontSize={'25px'}>AFFINIDI-SALES</Heading>
 
             {/* search option  */}
-            <InputGroup mx="10px" maxW="25em">
+            <InputGroup mx="10px" maxW="20em">
               <InputLeftElement pointerEvents="none">
                 <FaSearch color="gray.300" />
               </InputLeftElement>
