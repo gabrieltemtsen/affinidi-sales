@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import { useShoppingCart } from "@/context/ShoppingCartContext";
 import {
   Drawer,
@@ -8,12 +9,17 @@ import {
   DrawerOverlay,
   Grid,
 } from "@chakra-ui/react";
-import { useRef } from "react";
 import CartItemInDrawer from "../CartItemInDrawer";
 
-const DrawerComponent = ({ isOpen, onClose, drawerHeader }) => {
+interface DrawerComponentProps {
+  isOpen: boolean;
+  onClose: () => void;
+  drawerHeader: string;
+}
+
+const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, drawerHeader }) => {
   const { cartItems } = useShoppingCart();
-  const btnRef = useRef();
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Drawer

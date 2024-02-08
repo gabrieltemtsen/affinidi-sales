@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Heading,
@@ -11,7 +12,21 @@ import DrawerComponent from "../Drawer";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useShoppingCart } from "@/context/ShoppingCartContext";
 
-const SingleProduct = ({ id, image, title, description, price }) => {
+interface SingleProductProps {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  price: number;
+}
+
+const SingleProduct: React.FC<SingleProductProps> = ({
+  id,
+  image,
+  title,
+  description,
+  price
+}) => {
   const { isOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -34,7 +49,6 @@ const SingleProduct = ({ id, image, title, description, price }) => {
           leftIcon={<FaPlus />}
           colorScheme="messenger"
           w="full"
-          //
           onClick={() => {
             addItemToCart(id);
             toast({

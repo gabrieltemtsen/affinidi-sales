@@ -17,7 +17,7 @@ import DrawerComponent from "./Drawer";
 const Header: React.FunctionComponent = () => {
   const { inputSearchedTerm } = useShoppingCart();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const drawerRef = useRef();
+  const drawerRef = useRef(null);
 
   return (
     <>

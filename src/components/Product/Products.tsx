@@ -1,22 +1,22 @@
+import React from 'react';
 import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { Box, Center, CircularProgress, SimpleGrid } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import SingleProduct from "./SingleProduct";
 
 type Product = {
-  id: string;
+  id: number;
   image: string;
   title: string;
   price: number;
   description: string;
 }
 
-
 const Products: React.FunctionComponent = () => {
   const { searchTerm } = useShoppingCart();
   const storeAPIUrl: string = process.env.NEXT_PUBLIC_FAKE_STORE_API as string
 
-  const { data, isLoading } = useQuery(["products"], () => {
+  const { data, isLoading } = useQuery<Product[]>(["products"], () => {
     return fetch(storeAPIUrl).then((res) =>
       res.json()
     );
