@@ -1,4 +1,4 @@
-import { Provider } from "next-auth/providers";
+// import { Provider } from "next-auth/providers";
 import {
   providerClientId,
   providerClientSecret,
@@ -7,7 +7,7 @@ import {
 
 export const PROVIDER_ATTRIBUTES_KEY = "custom";
 
-export const provider: Provider = {
+export const provider: any = {
   id: "affinidi",
   name: "Affinidi",
   clientId: providerClientId,
