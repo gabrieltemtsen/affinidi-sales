@@ -1,6 +1,6 @@
+import React, { createContext, useContext, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { debounce } from "lodash";
-import { createContext, useContext, useState } from "react";
 
 type ShoppingCartContextProps = {
   getItemsQuantity: (id: number) => number;
@@ -9,7 +9,7 @@ type ShoppingCartContextProps = {
   cartItems: CartItemsProps[];
   searchTerm: string;
   cartItemsQuantity: number;
-  inputSearchedTerm: (term: string) => void;
+  inputSearchedTerm: (term: string) => void | ((e: string) => void);
 };
 
 export type CartItemsProps = {
@@ -21,7 +21,11 @@ const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
 
 export const useShoppingCart = () => useContext(ShoppingCartContext);
 
-export const ShoppingCartProvider = ({ children }) => {
+interface ShoppingCartProviderProps {
+  children: React.ReactNode;
+}
+
+export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [cartItems, setCartItems] = useLocalStorage<CartItemsProps[]>(
     "shopping-cart",
@@ -29,16 +33,16 @@ export const ShoppingCartProvider = ({ children }) => {
   );
 
   const inputSearchedTerm = debounce((e) => {
-    return setSearchTerm(e);
+    setSearchTerm(e); 
   }, 500);
 
-  function getItemsQuantity(id) {
+  function getItemsQuantity(id: number) {
     return (
       cartItems?.find((currentItem) => currentItem.id === id)?.quantity || 0
     );
   }
 
-  function addItemToCart(id) {
+  function addItemToCart(id: number) {
     setCartItems((currentItem) => {
       if (currentItem?.find((item) => item.id === id) == null) {
         return [...currentItem, { id, quantity: 1 }];
@@ -54,7 +58,7 @@ export const ShoppingCartProvider = ({ children }) => {
     });
   }
 
-  function removeItem(id) {
+  function removeItem(id: number) {
     setCartItems((currentItem) => currentItem.filter((item) => item.id !== id));
   }
 
