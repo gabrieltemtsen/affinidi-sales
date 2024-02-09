@@ -150,7 +150,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
   };
 
   const renderCheckoutModal = () => {
-    if (isAuthenticated && user) {
+    if (isAuthenticated && user && cartItems.length > 0) {
       return (
 
         <>
@@ -247,19 +247,28 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
             ))}
           </Grid>
 
-          <Flex flexDirection={'column'} justifyContent={'center'} mb={5} p={2} borderBottom={'1px solid gray'}>
-                <Text >Total Amount + Shipping Fees ($150) : <strong> ${totalPrice + 150} </strong> </Text>
-                {usersBirthday && (
-                  <Text>
-                    Birthday Discount: <strong>100%</strong>
-                    New Amount to Pay : ${totalPrice}
-                  </Text>
-                
-                )}
-                <Button onClick={applyBirthdayDiscount} size={'md'}>
-                  Apply Birthday Discount (100% off shipping fees)
-                </Button>
-          </Flex>
+          {cartItems.length > 0 && (
+            <Flex flexDirection={'column'} justifyContent={'center'} mb={5} p={2} borderBottom={'1px solid gray'}>
+            <Text >Total Amount + Shipping Fees ($150) : <strong> ${totalPrice + 150} </strong> </Text>
+            {usersBirthday && (
+              <Text>
+                Birthday Discount: <strong>100%</strong>
+                New Amount to Pay : ${totalPrice}
+              </Text>
+            
+            )}
+            <Button onClick={applyBirthdayDiscount} size={'md'}>
+              Apply Birthday Discount (100% off shipping fees)
+            </Button>
+      </Flex>
+     
+
+          )}
+           {cartItems.length == 0 && ( 
+        <Text>Kindly add items to cart</Text> 
+          )}
+
+          
 
           
 
