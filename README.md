@@ -17,13 +17,14 @@ These new features significantly enhance the user experience by providing person
 ## Source Code References
 1. **Displaying Profile Picture**:
    - [`Display view`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/components/Navbar.tsx#L55)
-   - [`Logic Request (next-auth-provder)`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/lib/auth/auth-providers.ts#L36)
    -  [`Logic Request (next-auth-options)`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/lib/auth/auth-options.ts#L35)
+   -  [`PEX-QUERY`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/lib/pex-queries.ts#L225)
 
 2. **Applying Birthday Discount**:
    - [`Display view`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/components/Drawer/index.tsx#L250)
    - [`Logic`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/components/Drawer/index.tsx#L114)
    - [`Logic request (neext-auth-options)`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/lib/auth/auth-options.ts#L47)
+   - [`PEX-QUERY`](https://github.com/gabrieltemtsen/affinidi-sales/blob/main/src/lib/pex-queries.ts#L255)
 
 ## Conclusion
 By leveraging Affinidi's products and integrating additional data points from the Vault, I have improved the functionality and user experience of our online store application. These enhancements not only personalize the user experience but also demonstrate the seamless integration of Affinidi's solutions into real-world projects.
