@@ -128,10 +128,13 @@ const Header: React.FunctionComponent = () => {
               </InputLeftElement>
 
               <Input
+              
                 placeholder="Search"
                 size="md"
                 variant="filled"
                 onChange={(e) => inputSearchedTerm(e.target.value)}
+                _focus={{ background: "white" }}
+
               />
             </InputGroup>
 
