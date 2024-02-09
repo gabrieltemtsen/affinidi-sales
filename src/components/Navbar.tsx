@@ -119,7 +119,7 @@ const Header: React.FunctionComponent = () => {
       >
         <Container maxW="6xl">
           <Flex alignItems="center" justifyContent="space-between">
-            <Heading color={'white'} fontSize={'24px'}>AFFINIDI-SALE</Heading>
+            <Heading color={'white'}  fontSize={'20px'}>AFFINIDI-SALES</Heading>
 
             {/* search option  */}
             <InputGroup mx="10px" maxW="20em">

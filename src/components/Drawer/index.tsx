@@ -36,7 +36,10 @@ interface DrawerComponentProps {
 }
 
 const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, drawerHeader }) => {
-  const { cartItems, clearCartItems } = useShoppingCart();
+  const { cartItems, clearCartItems, getTotalPrice } = useShoppingCart();
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [usersBirthday, setUsersBirthday] = useState<boolean>(false);
   const { user, isAuthenticated, isLoading } = useAuthentication();
   const toast = useToast();
 
@@ -48,6 +51,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
   const handler = () => {
     modalDisclosure.onOpen();
   };
+  
 
   const [userData, setUserData] = useState<UserInfo>({
     firstName: '',
@@ -62,6 +66,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
 
 
   useEffect(() => {
+    setTotalPrice(getTotalPrice());
     if (user) {
       setUserData({
         firstName: user.firstName || '',
@@ -71,10 +76,11 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
         address: user.address || '',
         postalCode: user.postalCode || '',
         city: user.city || '',
-        country: user.country || ''
+        country: user.country || '',
+        birthdate: user.birthdate || '',
       });
     }
-  }, [user]);
+  }, [user, totalPrice, getTotalPrice]);
   // Function to handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -104,6 +110,44 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
        
     }
   }
+
+  const applyBirthdayDiscount = () => {
+    if (user && user.birthdate) {
+      const today = new Date();
+      const userBirthday = new Date(user.birthdate);
+
+      if (
+        today.getDate() === userBirthday.getDate() &&
+        today.getMonth() === userBirthday.getMonth()
+      ) {
+        setUsersBirthday(true);
+        toast({
+          title: `Hurray!! Happy Birthday ${user.firstName}`,
+          description: "Enjoy your birthday with our birthday discount.",
+          status: "success",
+          position: "top",
+          variant: "subtle",
+          duration: 5000,
+          isClosable: true,
+        })
+      } else {
+        setUsersBirthday(false);
+        
+        toast({
+          title: `Sorry today is not your birthday`,
+          description: `Try when is your Birthday @ ${user.birthdate}.`,
+          status: "error",
+          position: "top",
+          variant: "subtle",
+          duration: 5000,
+          isClosable: true,
+        })
+      }
+    
+    } else {
+      return null;
+    }
+  };
 
   const renderCheckoutModal = () => {
     if (isAuthenticated && user) {
@@ -202,6 +246,22 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({ isOpen, onClose, draw
               <CartItemInDrawer {...item} key={item.id} />
             ))}
           </Grid>
+
+          <Flex flexDirection={'column'} justifyContent={'center'} mb={5} p={2} borderBottom={'1px solid gray'}>
+                <Text >Total Amount + Shipping Fees ($150) : <strong> ${totalPrice + 150} </strong> </Text>
+                {usersBirthday && (
+                  <Text>
+                    Birthday Discount: <strong>100%</strong>
+                    New Amount to Pay : ${totalPrice}
+                  </Text>
+                
+                )}
+                <Button onClick={applyBirthdayDiscount} size={'md'}>
+                  Apply Birthday Discount (100% off shipping fees)
+                </Button>
+          </Flex>
+
+          
 
           {renderCheckoutModal()}
         </DrawerBody>

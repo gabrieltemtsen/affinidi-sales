@@ -4,18 +4,21 @@ import { debounce } from "lodash";
 
 type ShoppingCartContextProps = {
   getItemsQuantity: (id: number) => number;
-  addItemToCart: (id: number) => void;
+  addItemToCart: (id: number, price: number) => void;
   removeItem: (id: number) => void;
-  clearCartItems: () => void; // New function to clear cart items
+  clearCartItems: () => void; 
   cartItems: CartItemsProps[];
   searchTerm: string;
   cartItemsQuantity: number;
   inputSearchedTerm: (term: string) => void | ((e: string) => void);
-};
+  getTotalPrice: () => number; 
+  getItemPrice: (id: number) => number};
+
 
 export type CartItemsProps = {
   id: number;
   quantity: number;
+  price: number; // Add a price field to the CartItemsProps type
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
@@ -43,10 +46,21 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     );
   }
 
-  function addItemToCart(id: number) {
-    setCartItems((currentItem) => {
+
+
+  function getTotalPrice(): number {
+       let totalPrice = 0;    
+    cartItems.forEach((item) => {
+      totalPrice += item.price;
+    });
+    
+    return totalPrice;
+  }
+
+  function addItemToCart(id: number, price: number) {
+    setCartItems((currentItem: CartItemsProps[]) => {
       if (currentItem?.find((item) => item.id === id) == null) {
-        return [...currentItem, { id, quantity: 1 }];
+        return [...currentItem, { id, quantity: 1, price: price,  }];
       } else {
         return currentItem?.map((item) => {
           if (item.id === id) {
@@ -67,15 +81,24 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     setCartItems([]);
   }
 
+  function getItemPrice(id: number): number {
+    const item = cartItems.find((item) => item.id === id);
+    return item ? item.price : 0;
+  }
+
   const cartItemsQuantity = cartItems?.reduce(
     (quantity, item) => quantity + item.quantity,
     0
   );
 
+  console.log('Gabb ',  cartItems)
+
   return (
     <ShoppingCartContext.Provider
       value={{
         cartItems,
+        getTotalPrice,
+        getItemPrice,
         getItemsQuantity,
         removeItem,
         addItemToCart,
@@ -89,3 +112,4 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     </ShoppingCartContext.Provider>
   );
 };
+

@@ -30,7 +30,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({
   const { isOpen, onClose } = useDisclosure();
   const toast = useToast();
 
-  const { addItemToCart, removeItem, getItemsQuantity } = useShoppingCart();
+  const { addItemToCart, removeItem, getItemsQuantity, getItemPrice, } = useShoppingCart();
 
   return (
     <Box key={id} maxW="lg" border="1px solid #eee" rounded="md" p="3">
@@ -50,10 +50,12 @@ const SingleProduct: React.FC<SingleProductProps> = ({
           colorScheme="messenger"
           w="full"
           onClick={() => {
-            addItemToCart(id);
+            console.log(id)
+            addItemToCart(id, price);
+            
             toast({
               title: `${title} Added`,
-              description: "We've added your product to the cart.",
+              description: "product added to cart.",
               status: "success",
               position: "bottom-left",
               variant: "subtle",
